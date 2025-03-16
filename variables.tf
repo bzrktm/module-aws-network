@@ -29,5 +29,12 @@ variable "cluster_name" {
 
 variable "folder_id" {
   type    = string
-  default = "folder_id_bzr"
+}
+
+variable "cloud_id" {
+  type = string
+}
+
+variable "token" {
+  type = string
 }

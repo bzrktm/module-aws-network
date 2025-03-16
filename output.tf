@@ -7,7 +7,8 @@ output "subnet_ids" {
     yandex_vpc_subnet.public-subnet-a.id,
     yandex_vpc_subnet.public-subnet-b.id,
     yandex_vpc_subnet.private-subnet-a.id,
-  yandex_vpc_subnet.private-subnet-b.id]
+    yandex_vpc_subnet.private-subnet-b.id
+  ]
 }
 
 output "public_subnet_ids" {

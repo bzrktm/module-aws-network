@@ -8,7 +8,10 @@ terraform {
 }
 
 provider "yandex" {
-  zone = "ru-central1-a"
+  zone  = "ru-central1-a"
+  token = var.token
+  folder_id = var.folder_id
+  cloud_id = var.cloud_id
 }
 
 locals {
@@ -39,7 +42,7 @@ resource "yandex_vpc_subnet" "public-subnet-a" {
 
   labels = {
     "Name" = (
-      "${local.vpc_name}-public-subnet-a"
+    "${local.vpc_name}-public-subnet-a"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
@@ -55,7 +58,7 @@ resource "yandex_vpc_subnet" "public-subnet-b" {
 
   labels = {
     "Name" = (
-      "${local.vpc_name}-public-subnet-b"
+    "${local.vpc_name}-public-subnet-b"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
@@ -71,7 +74,7 @@ resource "yandex_vpc_subnet" "private-subnet-a" {
 
   labels = {
     "Name" = (
-      "${local.vpc_name}-private-subnet-a"
+    "${local.vpc_name}-private-subnet-a"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/inetrnal-elb"             = "1"
@@ -87,7 +90,7 @@ resource "yandex_vpc_subnet" "private-subnet-b" {
 
   labels = {
     "Name" = (
-      "${local.vpc_name}-private-subnet-b"
+    "${local.vpc_name}-private-subnet-b"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/inetrnal-elb"             = "1"
