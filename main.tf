@@ -22,10 +22,10 @@ locals {
 
 ## Определение AWS VPC
 resource "yandex_vpc_network" "main" {
-  name        = "network-vpc"
+  name        = local.vpc_name
   description = "network for vpc"
   labels = {
-    "Name"                                        = local.vpc_name
+    "name"                                        = local.vpc_name
     "kubernetes.io/cluster/${local.cluster_name}" = "shared",
   }
   folder_id = local.folder_id
@@ -41,7 +41,7 @@ resource "yandex_vpc_subnet" "public-subnet-a" {
   route_table_id = yandex_vpc_route_table.rt.id
 
   labels = {
-    "Name" = (
+    "name" = (
     "${local.vpc_name}-public-subnet-a"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
@@ -57,7 +57,7 @@ resource "yandex_vpc_subnet" "public-subnet-b" {
   route_table_id = yandex_vpc_route_table.rt.id
 
   labels = {
-    "Name" = (
+    "name" = (
     "${local.vpc_name}-public-subnet-b"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
@@ -73,7 +73,7 @@ resource "yandex_vpc_subnet" "private-subnet-a" {
   route_table_id = yandex_vpc_route_table.rt.id
 
   labels = {
-    "Name" = (
+    "name" = (
     "${local.vpc_name}-private-subnet-a"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
@@ -89,7 +89,7 @@ resource "yandex_vpc_subnet" "private-subnet-b" {
   route_table_id = yandex_vpc_route_table.rt.id
 
   labels = {
-    "Name" = (
+    "name" = (
     "${local.vpc_name}-private-subnet-b"
     )
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
@@ -101,7 +101,7 @@ resource "yandex_vpc_subnet" "private-subnet-b" {
 resource "yandex_vpc_gateway" "ygw" {
   folder_id = local.folder_id
   labels = {
-    Name = "${local.vpc_name}-igw"
+    name = "${local.vpc_name}-igw"
   }
   shared_egress_gateway {}
 }
@@ -116,7 +116,7 @@ resource "yandex_vpc_route_table" "rt" {
   }
 
   labels = {
-    "Name" = "${local.vpc_name}-public-route"
+    "name" = "${local.vpc_name}-public-route"
   }
 }
 
