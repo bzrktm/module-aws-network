@@ -22,7 +22,7 @@ locals {
 
 ## Определение AWS VPC
 resource "yandex_vpc_network" "main" {
-  name        = "network vpc"
+  name        = "network-vpc"
   description = "network for vpc"
   labels = {
     "Name"                                        = local.vpc_name
